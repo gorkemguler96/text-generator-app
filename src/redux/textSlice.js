@@ -2,9 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 import axios from "axios";
 import {createAsyncThunk} from "@reduxjs/toolkit";
 
-export let inputType ="html"
 
-export const fetchParagraphs = createAsyncThunk('text/getTextAsync', async (inputNumber)=>{
+export const fetchParagraphs = createAsyncThunk('text/getTextAsync', async ({inputNumber, inputType})=>{
     const res = await axios(`https://baconipsum.com/api/?type=all-meat&paras=${inputNumber}&format=${inputType}`)
 
     return res.data
@@ -15,6 +14,7 @@ export const textSlice = createSlice({
     initialState: {
         items:[],
         inputNumber : 1,
+        inputType:"html"
 
     },
     reducers: {
@@ -22,7 +22,7 @@ export const textSlice = createSlice({
             state.inputNumber = action.payload
         },
         onChangeType:(state,action) => {
-            inputType = action.payload
+            state.inputType = action.payload
         }
     },
     extraReducers: {

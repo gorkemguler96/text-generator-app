@@ -12,6 +12,7 @@ function Text(props) {
     const dispatch = useDispatch()
     const { Option } = Select;
     const { TextArea } = Input;
+    const [inputType, setInputType] = useState("text")
 
 
     function onChange(value) {
@@ -27,21 +28,17 @@ function Text(props) {
 
     function onChangeType (value) {
         if(value == 1){
-            let inputType = "text"
+            setInputType("html")
             console.log(inputType)
         }else{
-            let inputType = "html"
+            setInputType("text")
             console.log(inputType)
         }
     }
 
     useEffect(()=>{
-            dispatch(fetchParagraphs(items.inputNumber))
-    },[items.inputNumber])
-
-    useEffect(()=>{
-        dispatch(fetchParagraphs(inputType))
-    },[inputType])
+            dispatch(fetchParagraphs({ inputNumber: items.inputNumber, inputType}))
+    },[items.inputNumber, inputType])
 
     return (
         <div className={"textcss"}>
