@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { InputNumber, Select, Input } from 'antd';
 import {useSelector, useDispatch} from "react-redux";
+import styles from './styles.less'
 import {fetchParagraphs, inputType, onChangeNumber, onChangeType} from '../redux/textSlice'
 import axios from "axios";
 
